@@ -6,7 +6,7 @@
 clear; clc; close all;
 
 % ---- 1. Connect to Arduino on COM8 ----
-s = serialport("COM8", 9600, "Timeout", 2);
+s = serialport("COM5", 9600, "Timeout", 2);
 flush(s);
 
 disp("Connected to COM8");
