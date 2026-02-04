@@ -9,9 +9,9 @@
 
 
 clear;
-bitebot_path = 'C:\Users\ciepm\OneDrive\Documents\Github\bitebot'
+bitebot_path = 'C:\Users\ciepm\OneDrive\Documents\Github\bitebot';
 addpath(genpath(bitebot_path))
-a = arduino %only valid when arduinosetup is used
+a = arduino; %only valid when arduinosetup is used
 %a = arduino("COM5", "Uno", Libraries = ["I2C","SPI","Servo"])
 methods(a);
 %% Configure Arduino Pins
