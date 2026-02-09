@@ -67,24 +67,5 @@ classdef BiteBotArduino
         function release_latch(obj)
             writePosition(obj.latch, 0.0);
         end
-        function reset_latch(obj)
-            writePosition(obj.latch, 0.5);
-        end
-        function start_envenomation(obj)
-            writeDigitalPin(obj.arduino_object,obj.press_reg_pin,1);
-            writeDigitalPin(obj.arduino_object,obj.press_valve_pin,1);
-        end
-        function end_envenomation(obj)
-            writeDigitalPin(obj.arduino_object,obj.press_reg_pin,0);
-            writeDigitalPin(obj.arduino_object,obj.press_valve_pin,0);
-        end
-        function start_refill(obj)
-            writeDigitalPin(obj.arduino_object,obj.press_reg_pin,1);
-            writeDigitalPin(obj.arduino_object,obj.press_valve_pin,1);
-        end
-        function end_refill(obj)
-            writeDigitalPin(obj.arduino_object,pressure_regulator_pin,0);
-            writeDigitalPin(obj.arduino_object,pressure_valve_pin,0);
-        end
     end
 end
