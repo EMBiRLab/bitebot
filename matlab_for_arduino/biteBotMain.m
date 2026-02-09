@@ -17,7 +17,7 @@ envenomation_time = 1;
 latch_time = 10;
 vacuum_time = 1;
 reference_mass = 500; %gram
-biteBot = BiteBotArduino(a, press_reg_pin, press_valve_pin, ...
+biteBot = BiteBotArduino(press_reg_pin, a, press_valve_pin, ...
     press_pump_pin, vacuum_valve_pin, lc_data_pin, lc_clock_pin, ...
     latch_pin, reference_mass);
 biteBot.blink();
@@ -39,7 +39,6 @@ startTime = datetime('now');
 
 while(true)
     % Update graph
-    t = toc(startTime);
     current_weight = biteBot.read_lc();
     addpoints(h, t, current_weight);
     

@@ -13,10 +13,9 @@ classdef BiteBotArduino
         latch_pin
     end
     methods
-        function obj = BiteBotArduino(a, press_reg_pin, press_valve_pin, ...
+        function obj = BiteBotArduino(press_reg_pin, a, press_valve_pin, ...
                 press_pump_pin, vacuum_valve_pin, lc_data_pin, lc_clock_pin, ...
                 latch_pin, reference_mass)
-            disp("Creating BiteBotArduino Object")
             % Set Object Parameters
             obj.arduino_object = a;
             obj.press_reg_pin = press_reg_pin;
@@ -37,7 +36,7 @@ classdef BiteBotArduino
             % define load cell
             % code is being iffy, so might do this without class method to
             % call loadcell
-            lc_pins = {char(obj.lc_data_pin), char(obj.lc_clock_pin)};
+            lc_pins = {obj.lc_data_pin, obj.lc_clock_pin};
             lc_pins = lc_pins';
             obj.loadcell = addon(obj.arduino_object, 'basicHX711/basic_HX711', lc_pins);
 
@@ -51,7 +50,7 @@ classdef BiteBotArduino
             input(msg_formatted, 's');
             obj.cal.scale_factor = scale(obj.cal, obj.loadcell);
             cal_weight = get_weight(obj.cal, obj.loadcell);
-            scale_error = 100.*(cal_weight - reference_mass);
+            scale_error = (cal_weight - reference_mass)./5;
             disp(compose("Mass of %f detected", cal_weight));
             disp(compose("Scale error of %f percent", scale_error));
             input('Remove 500g mass then press enter to continue...', 's');
