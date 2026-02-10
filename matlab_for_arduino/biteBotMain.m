@@ -4,7 +4,12 @@
 clear;
 clc;
 
-%% create variables
+%% Create Variables
+
+%add path
+addpath('C:\Users\ciepm\OneDrive\Documents\Github\bitebot\HX711_v3.0\HX711_v3.0')
+
+% Create Arduino object and initialize BiteBot
 a = arduino;
 press_reg_pin = 'D4';
 press_valve_pin = 'D7';
@@ -33,14 +38,16 @@ title("Real-Time Load Cell Reading (HX711)");
 % Initialize the character to something empty
 set(mass_plot, 'CurrentCharacter', char(0));
 
-startTime = datetime('now');
+start_time = datetime('now');
+action_start_time = NaN;
 
 %% Loop
 
 while(true)
     % Update graph
     current_weight = biteBot.read_lc();
-    addpoints(h, t, current_weight);
+    dt = seconds(datetime('now') - start_time);
+    addpoints(h, dt, current_weight);
     
     % Use drawnow to flush the graphics and capture the keypress
     drawnow limitrate;
