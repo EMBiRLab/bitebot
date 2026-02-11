@@ -78,12 +78,12 @@ classdef BiteBotArduino
             writeDigitalPin(obj.arduino_object,obj.press_valve_pin,0);
         end
         function start_refill(obj)
-            writeDigitalPin(obj.arduino_object,obj.press_reg_pin,1);
-            writeDigitalPin(obj.arduino_object,obj.press_valve_pin,1);
+            writeDigitalPin(obj.arduino_object,obj.press_pump_pin,1);
+            writeDigitalPin(obj.arduino_object,obj.vacuum_valve_pin,1);
         end
         function end_refill(obj)
-            writeDigitalPin(obj.arduino_object,pressure_regulator_pin,0);
-            writeDigitalPin(obj.arduino_object,pressure_valve_pin,0);
+            writeDigitalPin(obj.arduino_object,obj.press_pump_pin,0);
+            writeDigitalPin(obj.arduino_object,obj.vacuum_valve_pin,0);
         end
     end
 end

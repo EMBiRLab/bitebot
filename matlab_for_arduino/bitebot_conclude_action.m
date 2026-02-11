@@ -1,6 +1,10 @@
-function reset_bool = bitebot_conclude_action(bitebot, action_char, envenomation_time, ...
+function reset_bool = bitebot_conclude_action(bitebot, action_start_time, ...
+    action_char, envenomation_time, ...
     latch_time, vacuum_time)
-    elapsed_time = toc;
+
+    current_time = datetime('now');
+    delta_t = current_time - action_start_time;
+    elapsed_time = seconds(delta_t);
     reset_bool = false; % Initialize reset_bool to false
     if(action_char == 'e' && elapsed_time > envenomation_time)
         print('Ending Envenomation');
