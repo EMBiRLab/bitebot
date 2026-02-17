@@ -29,7 +29,7 @@ lc_clock_pin = "D2";
 latch_pin = "A0";
 envenomation_time = 1;
 latch_time = 5;
-vacuum_time = 1;
+vacuum_time = 2.5;
 reference_mass = 500; %gram
 biteBot = BiteBotArduino(press_reg_pin, a, press_valve_pin, ...
     press_pump_pin, vacuum_valve_pin, lc_data_pin, lc_clock_pin, ...
@@ -59,7 +59,8 @@ i = 0;
 while(true)
     i = i+1;
     % Update graph
-    current_weight = biteBot.read_lc();
+    current_weight = i;
+    %current_weight = biteBot.read_lc();
     dt = seconds(datetime('now') - start_time);
     addpoints(h, dt, current_weight);
     
@@ -69,6 +70,7 @@ while(true)
     % Check for the character input
     current_char = get(mass_plot, 'CurrentCharacter');
     if current_char == 'q'
+        %print("End of Test");
         break;
     end
 
@@ -101,7 +103,7 @@ while(true)
         end
     end
 
-    pause(0.01);
+    pause(0.05);
     
 end
 
@@ -124,3 +126,8 @@ T = table(data_time, ...
     'VariableNames', {'Time', 'Mass', 'Action'});
 
 writetable(T, file_name_and_path);
+
+%print("Test Data Stored");
+
+% Close the figure window
+close(mass_plot);
