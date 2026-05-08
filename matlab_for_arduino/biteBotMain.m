@@ -29,7 +29,7 @@ lc_clock_pin = "D2";
 latch_pin = "A0";
 envenomation_time = 1;
 latch_time = 5;
-vacuum_time = 2.5;
+vacuum_time = 1;
 reference_mass = 500; %gram
 biteBot = BiteBotArduino(press_reg_pin, a, press_valve_pin, ...
     press_pump_pin, vacuum_valve_pin, lc_data_pin, lc_clock_pin, ...
@@ -59,8 +59,8 @@ i = 0;
 while(true)
     i = i+1;
     % Update graph
-    current_weight = i;
-    %current_weight = biteBot.read_lc();
+    %current_weight = i;
+    current_weight = biteBot.read_lc();
     dt = seconds(datetime('now') - start_time);
     addpoints(h, dt, current_weight);
     
@@ -76,6 +76,7 @@ while(true)
 
     % Do work with char
     if ~isempty(current_char) && current_char ~= char(0)
+        %pause(5); %for human to act
         action_char = current_char;
         action_start_time = bitebot_input_selector(biteBot,current_char);
         % CRITICAL: Clear the character so it doesn't trigger again
