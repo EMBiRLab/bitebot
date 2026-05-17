@@ -47,7 +47,7 @@ function [filepath, confirmation_array, cal_domain, strict_cal_domain, zero_doma
             filepath = 'h21_manual_n1_t1.csv';
             cal_domain = 1:8e3;
             strict_cal_domain = 4e3:5.5e3;
-            golay_framelen = 95;
+            golay_framelen = 91;
     
         % Rung 2
     
@@ -105,7 +105,7 @@ function [filepath, confirmation_array, cal_domain, strict_cal_domain, zero_doma
             cal_domain = 3e3:8e3;
             strict_cal_domain = 5e3:6.5e3;
             zero_domain = 8e3:10e3;
-            golay_framelen = 85;
+            golay_framelen = 91;
     
         % Rung 3
     
