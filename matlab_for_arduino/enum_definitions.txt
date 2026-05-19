@@ -1,0 +1,4 @@
+'e' = 'Starting Envenomation'
+'d' = 'Dropping Fang'
+'r' = 'Resetting Fang'
+'v' = 'Pulling Vacuum'
